@@ -30,5 +30,6 @@
     - name: HTTP Service is Open on Firewall
       firewalld:
         service: http
+        state: enabled
         permanent: true
         immediate: yes
