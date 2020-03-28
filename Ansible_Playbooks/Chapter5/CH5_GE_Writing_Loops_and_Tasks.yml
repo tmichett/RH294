@@ -1,0 +1,21 @@
+---
+- name: MariaDB server is running
+  hosts: database_dev
+  vars:
+    mariadb_packages:
+      - mariadb-server
+      - python3-PyMySQL
+  tasks:
+    - name: MariaDB packages are installed
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ mariadb_packages }}"
+      when: ansible_distribution == "RedHat"
+
+      ## NOTE: Using the SYSTEMD module instead of SERVICE module
+    - name: Start MariaDB service
+      systemd:
+        name: mariadb
+        state: started
+        enabled: true
