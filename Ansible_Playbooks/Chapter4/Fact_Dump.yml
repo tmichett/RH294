@@ -1,0 +1,13 @@
+---
+- name: Dump facts
+  hosts: servera
+  become: false
+  tasks:
+    - name: Print Facts
+      debug: 
+        var: ansible_facts
+    - name: Output to File
+      copy:
+        content: "The FQDN is {{ ansible_facts.fqdn }}\n"
+        dest: FQDN.txt
+      delegate_to: localhost
