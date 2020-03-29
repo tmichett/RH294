@@ -9,4 +9,4 @@
         state: installed
       register: install_result
 
-    - debug: var=install_result
+    - debug: var=install_result.results
