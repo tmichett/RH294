@@ -1,0 +1,55 @@
+---
+# start of mailrelay playbook
+- name: create mail relay servers
+  hosts: mailrelay
+  user: devops
+  become: true
+
+  tasks:
+    - name: install postfix package
+      yum:
+        name: postfix
+        state: installed
+
+    - name: install mail config files
+      template:
+        src: postfix-relay-main.conf.j2
+        dest: /etc/postfix/main.cf
+        owner: root
+        group: root
+        mode: 0644
+      notify: restart postfix
+
+    - name: check main.cf file
+      stat: path=/etc/postfix/main.cf
+      register: maincf
+
+    - name: verify main.cf file exists
+      debug: msg="The main.cf file exists"
+      when: maincf.stat.exists is defined
+
+    - name: start and enable mail services
+      service:
+        name: postfix
+        state: started
+        enabled: yes
+
+    - name: check for always_bcc
+      command: /usr/sbin/postconf always_bcc
+      register: bcc_state
+      ignore_errors: true
+
+    - name: email notification of always_bcc config
+      mail:
+        to: student@serverb.example.com
+        subject: 'always_bcc setting is not empty'
+        body: "always_bcc is {{bcc_state.stdout}}"
+      when: bcc_state.stdout != 'always_bcc ='
+
+  handlers:
+    - name: restart postfix
+      service:
+        name: postfix
+        state: restarted
+
+# end of mailrelay play

@@ -1,0 +1,50 @@
+---
+- name: Install a samba server
+  hosts: samba_servers
+  user: devops
+  become: true
+  vars:
+    install_state: installed
+    random_var: This is colon: test
+
+  tasks:
+  - name: install samba
+    yum:
+      name: samba
+      state: {{ install_state }}
+
+  - name: install firewalld
+    yum:
+      name: firewalld
+      state: installed
+
+  - name: debug install_state variable
+    debug: 
+      msg: "The state for the samba service is {{ install_state }}"
+
+  - name: start samba
+    service:
+      name: smb
+      state: started
+      enabled: yes
+
+  - name: start firewalld
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+
+  - name: configure firewall for samba
+    firewalld:
+      state: enabled
+      permanent: true
+      immediate: true
+      service: samba
+
+   - name: deliver samba config
+     template:
+       src: samba.j2
+       dest: /etc/samba/smb.conf
+       owner: root
+       group: root
+       mode: 0644

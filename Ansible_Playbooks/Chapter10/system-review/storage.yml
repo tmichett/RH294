@@ -1,0 +1,38 @@
+---
+- name: Ensure Apache Storage Configuration
+  hosts: webservers
+  vars_files:
+    - storage_vars.yml
+  tasks:
+    - name: Correct partitions exist on /dev/vdb
+      debug:
+        msg: TODO
+      loop: "{{ partitions }}"
+
+    - name: Ensure Volume Groups Exist
+      debug:
+        msg: TODO
+      loop: "{{  volume_groups }}"
+
+    - name: Create each Logical Volume (LV) if needed
+      debug:
+        msg: TODO
+      loop: "{{ logical_volumes }}"
+      when: true
+
+    - name: Ensure XFS Filesystem exists on each LV
+      debug:
+        msg: TODO
+      loop: "{{ logical_volumes }}"
+
+    - name: Ensure the correct capacity for each LV
+      debug:
+        msg: TODO
+      loop: "{{ logical_volumes }}"
+
+    - name: Each Logical Volume is mounted
+      debug:
+        msg: TODO
+      loop: "{{ logical_volumes }}"
+
+

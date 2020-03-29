@@ -1,0 +1,28 @@
+#This is an Ansible Template
+# 'item' is a user from the web_developers user list,
+#  and defines:
+#    - user_port
+#    - username
+#    - name
+
+Listen {{ item.user_port }}
+
+<VirtualHost *:{{ item.user_port }}>
+    ServerName {{ inventory_hostname }}
+
+    ErrorLog "logs/{{ item.username }}_error_log"
+    CustomLog "logs/{{ item.username }}_access_log" common
+
+    DocumentRoot /srv/{{ item.username }}/www
+
+
+    <Directory /srv/{{ item.username }}/www >
+        Options FollowSymLinks
+
+        AllowOverride All
+        Require all granted
+
+    </Directory>
+
+</VirtualHost>
+

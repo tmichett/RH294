@@ -1,0 +1,5 @@
+---
+# vars file for ansible-vsftpd
+vsftpd_package: vsftpd
+vsftpd_service: vsftpd
+vsftpd_config_file: /etc/vsftpd/vsftpd.conf

@@ -1,0 +1,15 @@
+---
+# variables used by rhel-system-roles.selinux
+
+selinux_policy: targeted
+selinux_state: enforcing
+
+selinux_ports:
+  - ports:
+      - "9081"
+      - "9082"
+    proto: 'tcp'
+    setype: 'http_port_t'
+    state: 'present'
+
+

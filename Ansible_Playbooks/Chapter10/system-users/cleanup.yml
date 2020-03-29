@@ -1,0 +1,31 @@
+---
+- name: Remove additional users
+  hosts: webservers
+  vars_files:
+    - vars/users_vars.yml
+
+  handlers:
+  - name: "Restart sshd"
+    service:
+      name: "sshd"
+      state: "restarted"
+
+  tasks:
+  - name: Remove the exercise users
+    user:
+      name: "{{ item.username }}"
+      state: absent
+    with_items: "{{ users }}"
+
+  - name: Remove home directories
+    file:
+      path: "/home/{{ item.username }}"
+      state: absent
+    with_items: "{{ users }}"
+
+  - name: Enable root SSH login
+    lineinfile:
+      dest: "/etc/ssh/sshd_config"
+      regexp: "^PermitRootLogin"
+      line: "PermitRootLogin yes"
+    notify: "Restart sshd"

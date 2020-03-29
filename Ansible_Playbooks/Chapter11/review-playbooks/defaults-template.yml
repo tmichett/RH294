@@ -1,0 +1,12 @@
+---
+# defaults file for ansible-vsftpd
+vsftpd_anonymous_enable: true
+vsftpd_connect_from_port_20: true
+vsftpd_listen: true
+vsftpd_local_enable: false
+vsftpd_setype: public_content_t
+vsftpd_syslog_enable: true
+vsftpd_write_enable: true
+vsftpd_chroot_local_user: true
+vsftpd_anon_root: /var/ftp
+vsftpd_local_root: /var/ftp

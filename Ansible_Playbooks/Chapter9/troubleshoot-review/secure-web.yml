@@ -1,0 +1,86 @@
+---
+# start of secure web server playbook
+- name: create secure web service
+  hosts: webservers
+  remote_user: students
+  vars:
+    random_var: This is colon: test
+
+  tasks:
+    - block:
+        - name: install web server packages
+          yum:
+            name: {{ item }}
+            state: latest
+          notify:
+            - restart services
+          loop:
+            - httpd
+            - mod_ssl
+
+        - name: install httpd config files
+          copy:
+            src: vhosts.conf
+            dest: /etc/httpd/conf.d/vhosts.conf
+            backup: yes
+            owner: root
+            group: root
+            mode: 0644
+          register: vhosts_config
+          notify:
+            - restart services
+
+        - name: create ssl certificate
+          command: openssl req -new -nodes -x509 -subj "/C=US/ST=North Carolina/L=Raleigh/O=Example Inc/CN=serverb.lab.example.com" -days 120 -keyout /etc/pki/tls/private/serverb.lab.example.com.key -out /etc/pki/tls/certs/serverb.lab.example.com.crt -extensions v3_ca
+          args:
+            creates: /etc/pki/tls/certs/serverb.lab.example.com.crt
+
+         - name: start and enable web services
+           service:
+             name: httpd
+             state: started
+             enabled: yes
+
+        - name: deliver content
+          copy:
+            dest: /var/www/vhosts/serverb-secure
+            src: html/
+
+        - name: check httpd syntax
+          command: /sbin/httpd -t
+          register: httpd_conf_syntax
+          failed_when: "'Syntax OK' not in httpd_conf_syntax.stderr"
+
+        - name: httpd_conf_syntax variable
+          debug:
+            msg: "The httpd_conf_syntax variable value is {{ httpd_conf_syntax }}"
+
+        - name: check httpd status
+          command: systemctl is-active httpd
+          register: httpd_status
+          changed_when: httpd_status.rc != 0
+          notify:
+            - restart services
+
+      rescue:
+        - name: recover original httpd config
+          file:
+            path: /etc/httpd/conf.d/vhosts.conf
+            state: absent
+          notify:
+            - restart services
+
+        - name: email notification of httpd config status
+          mail:
+            to: student@serverb.lab.example.com
+            subject: 'httpd config is not correct'
+            body: "httpd syntax is {{httpd_conf_syntax.stdout}}"
+          when: httpd_conf_syntax.stdout != 'Syntax OK'
+
+  handlers:
+    - name: restart services
+      service:
+        name: httpd
+        state: restarted
+
+# end of secure web play

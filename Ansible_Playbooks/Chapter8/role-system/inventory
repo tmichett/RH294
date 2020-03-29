@@ -1,0 +1,16 @@
+[controlnode]
+workstation.lab.example.com
+
+
+[na_datacenter]
+servera.lab.example.com
+
+[europe_datacenter]
+serverb.lab.example.com
+
+
+[database_servers]
+servera.lab.example.com
+serverb.lab.example.com
+
+

@@ -1,0 +1,7 @@
+[controlnode]
+workstation.lab.example.com
+
+[dev_webserver]
+servera.lab.example.com
+
+
