@@ -1,6 +1,7 @@
 ---
 - name: MariaDB server is installed
   hosts: databases
+  
   vars:
     db_packages:
       - mariadb-server
@@ -9,6 +10,7 @@
     resources_url: http://materials.example.com/labs/control-handlers
     config_file_url: "{{ resources_url }}/my.cnf.standard"
     config_file_dst: /etc/my.cnf
+
   tasks:
     - name: "{{ db_packages }} packages are installed"
       yum:
