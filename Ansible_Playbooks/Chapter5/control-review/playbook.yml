@@ -1,0 +1,17 @@
+---
+- name: Playbook Control Lab
+  hosts: webservers
+  vars_files: vars.yml
+  tasks:
+    #Fail Fast Message
+
+    #Install all Packages
+
+    #Enable and start services
+
+    #Block of config tasks
+
+    #Configure the firewall
+
+  #Add handlers
+

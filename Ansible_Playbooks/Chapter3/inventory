@@ -2,6 +2,7 @@ servera
 serverb
 serverc
 serverd
+servera.lab.example.com 
 
 [web]
 servera

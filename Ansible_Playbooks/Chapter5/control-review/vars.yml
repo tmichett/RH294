@@ -1,0 +1,31 @@
+min_ram_mb: 256
+
+web_service: httpd
+web_package: httpd
+ssl_package: mod_ssl
+
+fw_service: firewalld
+fw_package: firewalld
+
+
+services:
+ - "{{ web_service }}"
+ - "{{ fw_service }}"
+
+packages:
+ - "{{ web_package }}"
+ - "{{ ssl_package }}"
+ - "{{ fw_package }}"
+
+ssl_cert_dir: /etc/httpd/conf.d/ssl
+
+web_config_files:
+  - src: server.key
+    dest: "{{ ssl_cert_dir }}"
+  - src: server.crt
+    dest: "{{ ssl_cert_dir }}"
+  - src: ssl.conf
+    dest: /etc/httpd/conf.d
+  - src: index.html
+    dest: /var/www/html
+

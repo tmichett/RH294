@@ -1,0 +1,40 @@
+---
+- name: Configure system
+  hosts: all
+  remote_user: devops
+  become: true
+  tasks:
+    - name: Configure a custom /etc/motd
+      template:
+        src: motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Check file exists
+      stat:
+        path: /etc/motd
+      register: motd
+
+    - name: Display stat results
+      debug:
+        var: motd
+
+    - name: Copy custom /etc/issue file
+      copy:
+        src: files/issue
+        dest: /etc/issue
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Ensure /etc/issue.net is a symlink to /etc/issue
+      file:
+        src: /etc/issue
+        dest: /etc/issue.net
+        state: link
+        owner: root
+        group: root
+        force: yes
+
