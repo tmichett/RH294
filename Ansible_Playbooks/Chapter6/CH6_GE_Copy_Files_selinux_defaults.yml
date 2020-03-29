@@ -1,0 +1,12 @@
+---
+- name: Using the copy module
+  hosts: all
+  remote_user: root
+  tasks:
+    - name:  SELinux file context is set to defaults
+      file:
+        path: /home/devops/users.txt
+        seuser: _default
+        serole: _default
+        setype: _default
+        selevel: _default

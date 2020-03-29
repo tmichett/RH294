@@ -1,0 +1,13 @@
+---
+- name: Using the copy module
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Copy a file to managed hosts and set attributes
+      copy:
+        src: files/users.txt
+        dest: /home/devops/users.txt
+        owner: devops
+        group: devops
+        mode: u+rw,g-wx,o-rwx
+        setype: samba_share_t

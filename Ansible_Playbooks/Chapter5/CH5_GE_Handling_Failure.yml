@@ -1,0 +1,25 @@
+---
+- name: Task Failure Exercise
+  hosts: databases
+  vars:
+    web_package: http
+    db_package: mariadb-server
+    db_service: mariadb
+
+  tasks:
+    - name: Attempt to set up a webserver
+      block:
+        - name: Install {{ web_package }} package
+          yum:
+            name: "{{ web_package }}"
+            state: present
+      rescue:
+        - name: Install {{ db_package }} package
+          yum:
+            name: "{{ db_package }}"
+            state: present
+      always:
+        - name: Start {{ db_service }} service
+          service:
+            name: "{{ db_service }}"
+            state: started

@@ -1,0 +1,10 @@
+---
+- name: Using the copy module
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Add a single line of text to a file
+      lineinfile:
+        path: /home/devops/users.txt
+        line: This line was added by the lineinfile module.
+        state: present

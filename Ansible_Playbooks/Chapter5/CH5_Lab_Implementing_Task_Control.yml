@@ -1,0 +1,67 @@
+---
+- name: Playbook Control Lab
+  hosts: webservers
+  vars_files: vars.yml
+  tasks:
+    #Fail Fast Message
+    - name: Show Failed System Requirements Message
+      fail:
+        msg: "The {{ inventory_hostname }} did not meet minimum reqs."
+      when: >
+        ansible_memtotal_mb < min_ram_mb or
+        ansible_distribution != "RedHat"
+
+    #Install all Packages
+    - name: Ensure required packages are present
+      yum:
+        name: "{{ packages }}"
+        state: latest
+
+    #Enable and start services
+    - name: Ensure services are started and enabled
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop: "{{ services }}"
+
+    #Block of config tasks
+    - name: Setting up the SSL cert directory and config files
+      block:
+        - name: Create SSL cert directory
+          file:
+            path: "{{ ssl_cert_dir }}"
+            state: directory
+
+        - name: Copy Config Files
+          copy:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+          loop: "{{ web_config_files }}"
+          notify: restart web service
+
+      rescue:
+        - name: Configuration Error Message
+          debug:
+            msg: >
+              One or more of the configuration
+              changes failed, but the web service
+              is still active.
+
+    #Configure the firewall
+    - name: ensure web server ports are open
+      firewalld:
+        service: "{{ item }}"
+        immediate: true
+        permanent: true
+        state: enabled
+      loop:
+        - http
+        - https
+
+  #Add handlers
+  handlers:
+    - name: restart web service
+      service:
+        name: "{{ web_service }}"
+        state: restarted

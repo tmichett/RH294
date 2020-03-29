@@ -1,0 +1,12 @@
+---
+- name: Using the copy module
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Add a block of text to an existing file
+      blockinfile:
+        path: /home/devops/users.txt
+        block: |
+          This block of text consists of two lines.
+          They have been added by the blockinfile module.
+        state: present
