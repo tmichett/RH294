@@ -1,0 +1,27 @@
+---
+# tasks file for student.bash_env
+
+- name: put away .bashrc
+  template:
+    src: templates/_bashrc.j2
+    dest: "{{ skel_dir }}/.bashrc"
+    owner: "{{ bash_user | default('root') }}"
+    group: "{{ bash_group | default('root') }}"
+    mode: 0644
+
+- name: put away .bash_profile
+  template:
+    src: templates/_bash_profile.j2
+    dest: "{{ skel_dir }}/.bash_profile"
+    owner: "{{ bash_user | default('root') }}"
+    group: "{{ bash_group | default('root') }}"
+    mode: 0644
+
+- name: put away .vimrc
+  template:
+    src: templates/_vimrc.j2
+    dest: "{{ skel_dir }}/.vimrc"
+    owner: "{{ bash_user | default('root') }}"
+    group: "{{ bash_group | default('root') }}"
+    mode: 0644
+

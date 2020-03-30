@@ -1,0 +1,23 @@
+---
+- name: use student.bash_env role playbook
+  hosts: devservers
+  vars:
+    prompt_color: blue
+    default_prompt: '[\u on \h in \W dir]\$ '
+  pre_tasks:
+    - name: Ensure test user does not exist
+      user:
+        name: student2
+        state: absent
+        force: yes
+        remove: yes
+
+  roles:
+    - student.bash_env
+
+  post_tasks:
+    - name: Create the test user
+      user:
+        name: student2
+        state: present
+        password: "{{ 'redhat' | password_hash('sha512', 'mysecretsalt') }}"

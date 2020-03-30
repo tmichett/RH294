@@ -1,0 +1,7 @@
+---
+# vars file for student.bash_env
+
+#Don't change!
+skel_dir: '/etc/skel/'
+
+
