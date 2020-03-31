@@ -1,0 +1,12 @@
+
+---
+- name: Installs a package and prints the result
+  hosts: servera
+  tasks:
+    - name: Install the package
+      yum:
+        name: httpd
+        state: installed
+      register: install_result
+
+    - debug: var=install_result
