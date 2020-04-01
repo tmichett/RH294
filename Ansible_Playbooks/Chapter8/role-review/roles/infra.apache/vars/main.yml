@@ -1,0 +1,6 @@
+---
+# vars file for apache
+
+
+prod_document_root: /var/www/html
+

@@ -1,0 +1,47 @@
+---
+# tasks file for apache
+
+- name: Apache Package is installed
+  yum:
+    name:
+      - httpd
+    state: present
+
+- name: Apache Service is started
+  service:
+    name: httpd
+    state: started
+    enabled: true
+
+- name: Custom Config files are present
+  template:
+    src: prod.conf.j2
+    dest: /etc/httpd/conf.d/prod.conf
+    owner: root 
+    group: root
+    mode: 0644
+  notify: restart apache
+
+- name: Firewalld allows HTTP traffic
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+  notify: restart firewalld
+
+- name: Check for existence of index.html
+  stat:
+    path: "{{ prod_document_root }}/index.html"
+  register: index_stats
+
+- name: Install a skeleton index.html
+  copy:
+    content: "This is the production server on {{ inventory_hostname }}\n"
+    dest: "{{ prod_document_root }}/index.html"
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - index_stats.stat.exists is defined
+    - not index_stats.stat.exists
+

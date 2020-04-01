@@ -1,0 +1,25 @@
+---
+- name: Configure Dev Web Server
+  hosts: dev_webserver
+  force_handlers: yes
+  roles:
+    - apache.developer_configs
+  pre_tasks:
+    - name: Check SELinux configuration
+      block:
+        - include_role:
+            name: rhel-system-roles.selinux
+      rescue:
+        # Fail if failed for a different reason than selinux_reboot_required.
+        - name: Check for general failure
+          fail:
+            msg: "SELinux role failed."
+          when: not selinux_reboot_required
+
+        - name: Restart managed host
+          reboot:
+            msg: "Ansible rebooting system for updates."
+
+        - name: Reapply SELinux role to complete changes
+          include_role:
+            name: rhel-system-roles.selinux

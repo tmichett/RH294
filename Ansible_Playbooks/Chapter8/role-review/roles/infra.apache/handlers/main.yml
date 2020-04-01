@@ -1,0 +1,15 @@
+---
+# handlers file for apache
+
+- name: restart firewalld
+  service:
+    name: firewalld
+    state: restarted
+
+- name: restart apache
+  service:
+    name: httpd
+    state: restarted
+
+
+

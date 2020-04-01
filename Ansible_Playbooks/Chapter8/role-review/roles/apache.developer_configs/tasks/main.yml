@@ -1,0 +1,56 @@
+---
+# tasks file for apache.developer_configs
+
+- name: Create user accounts
+  user:
+    name: "{{ item.username }}"
+    state: present
+  loop: "{{ web_developers }}"
+
+#Allows 'student' user to login to
+# any of the user accounts - for the lab only.
+# Jinja syntax for 'key' keyword available from the documentation.
+- name: Give student access to all accounts
+  authorized_key:
+    user: "{{ item.username }}"
+    state: present
+    key: "{{ lookup('file', '/home/student/.ssh/lab_rsa.pub') }}"
+  loop: "{{ web_developers }}"
+
+- name: Create content directory
+  file:
+    path: /srv/{{ item.username }}/www
+    state: directory
+    owner: "{{ item.username }}"
+  loop: "{{ web_developers }}"
+
+- name: Create skeleton index.html if needed
+  copy:
+    content: "This is index.html for user: {{ item.name }} ({{ item.username }})\n"
+    dest: /srv/{{ item.username }}/www/index.html
+    force: no
+    owner: "{{ item.username }}"
+    group: root
+    mode: 0664
+  loop: "{{ web_developers }}"
+
+
+- name: Set firewall port
+  firewalld:
+    port: "{{ item.user_port }}/tcp"
+    permanent: yes
+    state: enabled
+  loop: "{{ web_developers }}"
+  notify: restart firewalld
+
+- name: Copy Per-Developer Config files
+  template:
+    src: developer.conf.j2
+    dest: "/etc/httpd/conf.d/developer_{{ item.username }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ web_developers }}"
+  notify: restart apache
+
+
