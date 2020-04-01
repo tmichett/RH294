@@ -1,0 +1,42 @@
+---
+- name: Create multiple local users
+  hosts: webservers
+  vars_files:
+    - vars/users_vars.yml
+  handlers:
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted
+
+  tasks:
+
+  - name: Add webadmin group
+    group:
+      name: webadmin
+      state: present
+
+  - name: Create user accounts
+    user:
+      name: "{{ item.username }}"
+      groups: "{{ item.groups }}"
+    loop: "{{ users }}"
+
+  - name: Add authorized keys
+    authorized_key:
+      user: "{{ item.username }}"
+      key: "{{ lookup('file', 'files/'+ item.username + '.key.pub') }}"
+    loop: "{{ users }}"
+
+  - name: Modify sudo config to allow webadmin users sudo without a password
+    copy:
+      content: "%webadmin ALL=(ALL) NOPASSWD: ALL"
+      dest: /etc/sudoers.d/webadmin
+      mode: 0440
+
+  - name: Disable root login via SSH
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: "^PermitRootLogin"
+      line: "PermitRootLogin no"
+    notify: "Restart sshd"

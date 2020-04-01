@@ -1,0 +1,16 @@
+---
+- name: Recurring cron job
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Crontab file exists
+      cron:
+        name: Add date and time to a file
+        minute: "*/2"
+        hour: 9-16
+        weekday: 1-5
+        user: devops
+        job: date >> /home/devops/my_date_time_cron_job
+        cron_file: add-date-time
+        state: present

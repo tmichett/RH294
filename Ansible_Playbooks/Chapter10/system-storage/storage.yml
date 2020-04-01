@@ -5,34 +5,48 @@
     - storage_vars.yml
   tasks:
     - name: Correct partitions exist on /dev/vdb
-      debug:
-        msg: TODO
+      parted:
+        device: /dev/vdb
+        state: present
+        number: "{{ item.number }}"
+        part_start: "{{ item.start }}"
+        part_end: "{{ item.end }}"
       loop: "{{ partitions }}"
 
     - name: Ensure Volume Groups Exist
-      debug:
-        msg: TODO
+      lvg:
+        vg: "{{ item.name }}"
+        pvs: "{{ item.devices }}"
       loop: "{{  volume_groups }}"
 
     - name: Create each Logical Volume (LV) if needed
-      debug:
-        msg: TODO
+      lvol:
+        vg: "{{ item.vgroup }}"
+        lv: "{{ item.name }}"
+        size: "{{ item.size }}"
       loop: "{{ logical_volumes }}"
-      when: true
+      when: item.name not in ansible_lvm["lvs"]
 
     - name: Ensure XFS Filesystem exists on each LV
-      debug:
-        msg: TODO
+      filesystem:
+        dev: "/dev/{{ item.vgroup }}/{{ item.name }}"
+        fstype: xfs
       loop: "{{ logical_volumes }}"
 
     - name: Ensure the correct capacity for each LV
-      debug:
-        msg: TODO
+      lvol:
+        vg: "{{ item.vgroup }}"
+        lv: "{{ item.name }}"
+        size: "{{ item.size }}"
+        resizefs: yes
+        force: yes
       loop: "{{ logical_volumes }}"
 
     - name: Each Logical Volume is mounted
-      debug:
-        msg: TODO
+      mount:
+        path: "{{ item.mount_path }}"
+        src: "/dev/{{ item.vgroup }}/{{ item.name }}"
+        fstype: xfs
+        opts: noatime
+        state: mounted
       loop: "{{ logical_volumes }}"
-
-

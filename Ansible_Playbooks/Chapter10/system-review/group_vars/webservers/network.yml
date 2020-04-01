@@ -1,0 +1,9 @@
+---
+
+## NOTE: Serverb had a second NIC identified by enp2s0 and not ens4
+network_connections:
+  - name: enp2s0
+    type: ethernet
+    ip:
+      address:
+        - 172.25.250.40/24

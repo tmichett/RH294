@@ -1,0 +1,11 @@
+---
+- name: Change default boot target
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Default boot target is graphical
+      file:
+        src: /usr/lib/systemd/system/graphical.target
+        dest: /etc/systemd/system/default.target
+        state: link
