@@ -1,0 +1,53 @@
+---
+- name: Install and configure vsftpd
+  hosts: ftpservers
+  vars:
+    vsftpd_anon_root: /mnt/share/
+    vsftpd_local_root: /mnt/share/
+
+  roles:
+    - ansible-vsftpd
+
+  tasks:
+
+  - name: /dev/vdb1 is partitioned
+    command: >
+      parted --script /dev/vdb mklabel gpt mkpart primary 1MiB 100%
+    args:
+      creates: /dev/vdb1
+
+  - name: XFS file system exists on /dev/vdb1
+    filesystem:
+      dev: /dev/vdb1
+      fstype: xfs
+      force: yes
+
+  - name: anon_root mount point exists
+    file:
+      path: '{{ vsftpd_anon_root }}'
+      state: directory
+
+  - name: /dev/vdb1 is mounted on anon_root
+    mount:
+      name: '{{ vsftpd_anon_root }}'
+      src: /dev/vdb1
+      fstype: xfs
+      state: mounted
+      dump: '1'
+      passno: '2'
+    notify: restart vsftpd
+
+  - name: Make sure permissions on mounted fs are correct
+    file:
+      path: '{{ vsftpd_anon_root }}'
+      owner: root
+      group: root
+      mode: '0755'
+      setype: "{{ vsftpd_setype }}"
+      state: directory
+
+  - name: Copy README to the ftp anon_root
+    copy:
+      dest: '{{ vsftpd_anon_root }}/README'
+      content: "Welcome to the FTP server at {{ ansible_fqdn }}\n"
+      setype: '{{ vsftpd_setype }}'
