@@ -5,13 +5,13 @@
   become: true
   vars:
     install_state: installed
-    random_var: This is colon: test
+    random_var: "This is colon: test"
 
   tasks:
   - name: install samba
     yum:
       name: samba
-      state: {{ install_state }}
+      state: "{{ install_state }}"
 
   - name: install firewalld
     yum:
@@ -41,10 +41,10 @@
       immediate: true
       service: samba
 
-   - name: deliver samba config
-     template:
-       src: samba.j2
-       dest: /etc/samba/smb.conf
-       owner: root
-       group: root
-       mode: 0644
+  - name: deliver samba config
+    template:
+      src: samba.conf.j2
+      dest: /etc/samba/smb.conf
+      owner: root
+      group: root
+      mode: 0644
