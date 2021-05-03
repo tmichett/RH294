@@ -1,0 +1,156 @@
+2021-02-11 13:14:42,996 p=24895 u=student |  PLAY [Install a samba server] ********************************************************
+2021-02-11 13:14:43,014 p=24895 u=student |  TASK [Gathering Facts] ***************************************************************
+2021-02-11 13:14:45,276 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:45,306 p=24895 u=student |  TASK [install samba] *****************************************************************
+2021-02-11 13:14:48,639 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:48,668 p=24895 u=student |  TASK [install firewalld] *************************************************************
+2021-02-11 13:14:51,343 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:51,373 p=24895 u=student |  TASK [debug install_state variable] **************************************************
+2021-02-11 13:14:51,404 p=24895 u=student |  ok: [servera.lab.example.com] => {
+    "msg": "The state for the samba service is installed"
+}
+2021-02-11 13:14:51,434 p=24895 u=student |  TASK [start samba] *******************************************************************
+2021-02-11 13:14:53,198 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:53,227 p=24895 u=student |  TASK [start firewalld] ***************************************************************
+2021-02-11 13:14:54,268 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:54,297 p=24895 u=student |  TASK [configure firewall for samba] **************************************************
+2021-02-11 13:14:55,913 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:55,943 p=24895 u=student |  TASK [deliver samba config] **********************************************************
+2021-02-11 13:14:57,844 p=24895 u=student |  ok: [servera.lab.example.com]
+2021-02-11 13:14:57,849 p=24895 u=student |  PLAY RECAP ***************************************************************************
+2021-02-11 13:14:57,850 p=24895 u=student |  servera.lab.example.com    : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-02-11 13:42:11,617 p=25369 u=student |  ERROR! this task 'comman' has extra params, which is only allowed in the following modules: win_shell, include_vars, group_by, set_fact, include_role, import_role, add_host, script, shell, win_command, include_tasks, raw, import_tasks, command, include, meta
+2021-02-11 13:42:21,199 p=25376 u=student |  servera.lab.example.com | CHANGED | rc=0 >>
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        388M     0  388M   0% /dev
+tmpfs           411M     0  411M   0% /dev/shm
+tmpfs           411M   52M  359M  13% /run
+tmpfs           411M     0  411M   0% /sys/fs/cgroup
+/dev/vda1        10G  2.5G  7.6G  25% /
+tmpfs            83M     0   83M   0% /run/user/1000
+
+2021-02-11 13:42:57,078 p=25408 u=student |  servera.lab.example.com | CHANGED | rc=0 >>
+              total        used        free      shared  buff/cache   available
+Mem:            821         293         139          52         387         340
+Swap:             0           0           0
+
+2021-02-11 13:43:13,803 p=25429 u=student |  servera.lab.example.com | CHANGED | rc=0 >>
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 Feb06 ?        00:00:29 /usr/lib/systemd/systemd --switched-root --system --deserialize 18
+root         2     0  0 Feb06 ?        00:00:00 [kthreadd]
+root         3     2  0 Feb06 ?        00:00:00 [rcu_gp]
+root         4     2  0 Feb06 ?        00:00:00 [rcu_par_gp]
+root         6     2  0 Feb06 ?        00:00:00 [kworker/0:0H-kblockd]
+root         8     2  0 Feb06 ?        00:00:00 [mm_percpu_wq]
+root         9     2  0 Feb06 ?        00:00:00 [ksoftirqd/0]
+root        10     2  0 Feb06 ?        00:00:04 [rcu_sched]
+root        11     2  0 Feb06 ?        00:00:00 [migration/0]
+root        12     2  0 Feb06 ?        00:00:07 [watchdog/0]
+root        13     2  0 Feb06 ?        00:00:00 [cpuhp/0]
+root        15     2  0 Feb06 ?        00:00:00 [kdevtmpfs]
+root        16     2  0 Feb06 ?        00:00:00 [netns]
+root        17     2  0 Feb06 ?        00:00:00 [kauditd]
+root        18     2  0 Feb06 ?        00:00:01 [khungtaskd]
+root        19     2  0 Feb06 ?        00:00:00 [oom_reaper]
+root        20     2  0 Feb06 ?        00:00:00 [writeback]
+root        21     2  0 Feb06 ?        00:00:00 [kcompactd0]
+root        22     2  0 Feb06 ?        00:00:00 [ksmd]
+root        23     2  0 Feb06 ?        00:00:04 [khugepaged]
+root        24     2  0 Feb06 ?        00:00:00 [crypto]
+root        25     2  0 Feb06 ?        00:00:00 [kintegrityd]
+root        26     2  0 Feb06 ?        00:00:00 [kblockd]
+root        27     2  0 Feb06 ?        00:00:00 [md]
+root        28     2  0 Feb06 ?        00:00:00 [edac-poller]
+root        30     2  0 Feb06 ?        00:00:00 [watchdogd]
+root        32     2  0 Feb06 ?        00:00:00 [kswapd0]
+root        83     2  0 Feb06 ?        00:00:00 [kthrotld]
+root        84     2  0 Feb06 ?        00:00:00 [irq/24-pciehp]
+root        85     2  0 Feb06 ?        00:00:00 [irq/25-pciehp]
+root        86     2  0 Feb06 ?        00:00:00 [irq/26-pciehp]
+root        87     2  0 Feb06 ?        00:00:00 [irq/27-pciehp]
+root        88     2  0 Feb06 ?        00:00:00 [irq/28-pciehp]
+root        89     2  0 Feb06 ?        00:00:00 [irq/29-pciehp]
+root        90     2  0 Feb06 ?        00:00:00 [irq/30-pciehp]
+root        91     2  0 Feb06 ?        00:00:00 [acpi_thermal_pm]
+root        92     2  0 Feb06 ?        00:00:00 [kmpath_rdacd]
+root        93     2  0 Feb06 ?        00:00:00 [kaluad]
+root        94     2  0 Feb06 ?        00:00:00 [ipv6_addrconf]
+root       277     2  0 Feb06 ?        00:00:00 [rpciod]
+root       278     2  0 Feb06 ?        00:00:00 [kworker/u3:0]
+root       279     2  0 Feb06 ?        00:00:00 [xprtiod]
+root       391     2  0 Feb06 ?        00:00:08 [kworker/0:1H-xfs-log/vda1]
+root       392     2  0 Feb06 ?        00:00:00 [ata_sff]
+root       393     2  0 Feb06 ?        00:00:00 [scsi_eh_0]
+root       394     2  0 Feb06 ?        00:00:00 [scsi_tmf_0]
+root       395     2  0 Feb06 ?        00:00:00 [scsi_eh_1]
+root       396     2  0 Feb06 ?        00:00:00 [scsi_tmf_1]
+root       397     2  0 Feb06 ?        00:00:00 [scsi_eh_2]
+root       398     2  0 Feb06 ?        00:00:00 [scsi_tmf_2]
+root       399     2  0 Feb06 ?        00:00:00 [scsi_eh_3]
+root       400     2  0 Feb06 ?        00:00:00 [scsi_tmf_3]
+root       401     2  0 Feb06 ?        00:00:00 [scsi_eh_4]
+root       402     2  0 Feb06 ?        00:00:00 [scsi_tmf_4]
+root       403     2  0 Feb06 ?        00:00:00 [scsi_eh_5]
+root       404     2  0 Feb06 ?        00:00:00 [scsi_tmf_5]
+root       410     2  0 Feb06 ?        00:00:00 [ttm_swap]
+root       437     2  0 Feb06 ?        00:00:00 [xfsalloc]
+root       438     2  0 Feb06 ?        00:00:00 [xfs_mru_cache]
+root       439     2  0 Feb06 ?        00:00:00 [xfs-buf/vda1]
+root       440     2  0 Feb06 ?        00:00:00 [xfs-data/vda1]
+root       441     2  0 Feb06 ?        00:00:00 [xfs-conv/vda1]
+root       442     2  0 Feb06 ?        00:00:00 [xfs-cil/vda1]
+root       443     2  0 Feb06 ?        00:00:00 [xfs-reclaim/vda]
+root       444     2  0 Feb06 ?        00:00:00 [xfs-log/vda1]
+root       445     2  0 Feb06 ?        00:00:00 [xfs-eofblocks/v]
+root       446     2  0 Feb06 ?        00:03:02 [xfsaild/vda1]
+root       548     1  0 Feb06 ?        00:00:17 /usr/lib/systemd/systemd-journald
+root       579     1  0 Feb06 ?        00:00:02 /usr/lib/systemd/systemd-udevd
+rpc        633     1  0 Feb06 ?        00:00:01 /usr/bin/rpcbind -w -f
+root       634     1  0 Feb06 ?        00:00:02 /sbin/auditd
+root       636   634  0 Feb06 ?        00:00:00 /usr/sbin/sedispatch
+root       658     1  0 Feb06 ?        00:00:58 /sbin/rngd -f
+root       662     1  0 Feb06 ?        00:00:09 /usr/sbin/sssd -i --logger=files
+polkitd    663     1  0 Feb06 ?        00:00:15 /usr/lib/polkit-1/polkitd --no-debug
+root       665     1  0 Feb06 ?        00:00:00 /usr/sbin/gpm -m /dev/input/mice -t exps2
+root       666     1  0 Feb06 ?        00:00:00 /usr/sbin/smartd -n -q never
+root       667     1  0 Feb06 ?        00:00:00 /usr/sbin/mcelog --ignorenodev --daemon --foreground
+dbus       668     1  0 Feb06 ?        00:00:23 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+libstor+   670     1  0 Feb06 ?        00:00:02 /usr/bin/lsmd -d
+chrony     674     1  0 Feb06 ?        00:00:01 /usr/sbin/chronyd
+root       687   662  0 Feb06 ?        00:00:13 /usr/libexec/sssd/sssd_be --domain implicit_files --uid 0 --gid 0 --logger=files
+root       688   662  0 Feb06 ?        00:00:16 /usr/libexec/sssd/sssd_nss --uid 0 --gid 0 --logger=files
+root       692     1  0 Feb06 ?        00:00:06 /usr/lib/systemd/systemd-logind
+root       703     1  0 Feb06 ?        00:01:19 /usr/sbin/NetworkManager --no-daemon
+root       719     1  0 Feb06 ?        00:00:00 /usr/sbin/sshd -D -oCiphers=aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes256-cbc,aes128-gcm@openssh.com,aes128-ctr,aes128-cbc -oMACs=hmac-sha2-256-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha1,umac-128@openssh.com,hmac-sha2-512 -oGSSAPIKexAlgorithms=gss-gex-sha1-,gss-group14-sha1- -oKexAlgorithms=curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1 -oHostKeyAlgorithms=rsa-sha2-256,ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp384-cert-v01@openssh.com,rsa-sha2-512,ecdsa-sha2-nistp521,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com -oPubkeyAcceptedKeyTypes=rsa-sha2-256,ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp384-cert-v01@openssh.com,rsa-sha2-512,ecdsa-sha2-nistp521,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com
+root       720     1  0 Feb06 ?        00:01:20 /usr/libexec/platform-python -Es /usr/sbin/tuned -l -P
+root       914     1  0 Feb06 ?        00:00:00 /usr/sbin/gssproxy -D
+root       926     1  0 Feb06 ?        00:00:02 /usr/sbin/crond -n
+root       928     1  0 Feb06 ?        00:00:00 /usr/sbin/atd -f
+root      1044     1  0 Feb06 ?        00:00:59 /usr/sbin/rsyslogd -n
+root      1355     1  0 Feb06 ttyS0    00:00:00 /sbin/agetty -o -p -- \u --keep-baud 115200,38400,9600 ttyS0 vt220
+root      1356     1  0 Feb06 tty1     00:00:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+mysql    15170     1  0 Feb09 ?        00:02:07 /usr/libexec/mysqld --basedir=/usr
+root     19142     1  0 10:47 ?        00:00:01 /usr/sbin/httpd -DFOREGROUND
+apache   19144 19142  0 10:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache   19145 19142  0 10:47 ?        00:00:03 /usr/sbin/httpd -DFOREGROUND
+apache   19146 19142  0 10:47 ?        00:00:05 /usr/sbin/httpd -DFOREGROUND
+apache   19147 19142  0 10:47 ?        00:00:05 /usr/sbin/httpd -DFOREGROUND
+root     20010     2  0 11:33 ?        00:00:00 [kworker/u2:1-flush-252:0]
+root     21234     2  0 13:13 ?        00:00:00 [kworker/u2:0-events_unbound]
+root     22068     1  0 13:13 ?        00:00:00 /usr/sbin/smbd --foreground --no-process-group
+root     22070 22068  0 13:13 ?        00:00:00 /usr/sbin/smbd --foreground --no-process-group
+root     22071 22068  0 13:13 ?        00:00:00 /usr/sbin/smbd --foreground --no-process-group
+root     22072 22068  0 13:13 ?        00:00:00 /usr/sbin/smbd --foreground --no-process-group
+root     23534     2  0 13:26 ?        00:00:00 [kworker/0:0-cgroup_pidlist_destroy]
+root     23563     2  0 13:32 ?        00:00:00 [kworker/0:1-xfs-cil/vda1]
+root     23609     2  0 13:37 ?        00:00:00 [kworker/0:2-events]
+root     23683   719  0 13:42 ?        00:00:00 sshd: student [priv]
+student  23687     1  0 13:42 ?        00:00:00 /usr/lib/systemd/systemd --user
+root     23690     2  0 13:42 ?        00:00:00 [kworker/0:3-events_power_efficient]
+student  23692 23687  0 13:42 ?        00:00:00 (sd-pam)
+student  23698 23683  0 13:42 ?        00:00:00 sshd: student@pts/0
+root     23878     1  0 Feb08 ?        00:01:28 /usr/libexec/platform-python -s /usr/sbin/firewalld --nofork --nopid
+student  24074 23698  0 13:43 pts/0    00:00:00 /bin/sh -c /usr/libexec/platform-python /home/student/.ansible/tmp/ansible-tmp-1613068992.6302192-217108338103020/AnsiballZ_command.py && sleep 0
+student  24095 24074  0 13:43 pts/0    00:00:00 /usr/libexec/platform-python /home/student/.ansible/tmp/ansible-tmp-1613068992.6302192-217108338103020/AnsiballZ_command.py
+student  24097 24095  0 13:43 pts/0    00:00:00 ps -eaf
+

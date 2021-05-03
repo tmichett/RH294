@@ -1,0 +1,12 @@
+---
+- name: This is a test play
+  hosts: all
+  tasks: 
+
+    ## This will be task 1 and will do X
+    - name: Task 1
+      debug:
+        msg: This is a test for task 1
+
+
+    ## This will be task 2 and will do Y

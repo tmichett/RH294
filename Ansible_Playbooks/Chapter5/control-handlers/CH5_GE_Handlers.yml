@@ -6,6 +6,9 @@
     db_packages:
       - mariadb-server
       - python3-PyMySQL
+      - tree
+      - vim
+      - emacs
     db_service: mariadb
     resources_url: http://materials.example.com/labs/control-handlers
     config_file_url: "{{ resources_url }}/my.cnf.standard"

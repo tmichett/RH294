@@ -1,0 +1,11 @@
+---
+- name: Install Software Packages
+  hosts: serverd
+  vars:
+    pkg_name:
+      - vim
+      - tree
+      - httpd
+      - emacs
+  roles:
+    - tmichett.deploy_packages

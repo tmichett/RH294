@@ -9,4 +9,5 @@
         state: installed
       register: install_result
 
-    - debug: var=install_result.results
+    - name: A {{ install_result.results  }} was installed!!!
+      debug: var=install_result.changed

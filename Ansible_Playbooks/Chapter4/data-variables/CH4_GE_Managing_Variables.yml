@@ -2,9 +2,9 @@
 - name: Deploy and start Apache HTTPD service
   hosts: webserver
   vars:
-    web_pkg: httpd
+    web_pkg: nginx 
     firewall_pkg: firewalld
-    web_service: httpd
+    web_service: nginx
     firewall_service: firewalld
     python_pkg: python3-PyMySQL
     rule: http
@@ -17,6 +17,20 @@
           - "{{ firewall_pkg }}"
           - "{{ python_pkg }}"
         state: latest
+
+#### New Debug output to show variables
+#
+
+    - name: The variables are
+      debug:
+        msg: The value of web_pkg is "{{ web_pkg }}"
+
+    - name: The variables are
+      debug:
+        msg: The value of web_service is "{{ web_service }}"        
+        
+#### End Debug output 
+#
 
     - name: The {{ firewall_service }} service is started and enabled
       service:

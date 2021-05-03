@@ -2,7 +2,7 @@
 - name: Task Failure Exercise
   hosts: databases
   vars:
-    web_package: http
+    web_package: httpd 
     db_package: mariadb-server
     db_service: mariadb
 
@@ -22,7 +22,7 @@
           yum:
             name: "{{ web_package }}"
             state: present
-            failed_when: web_package == "httpd"
+          failed_when: web_package == "httpd"
       rescue:
         - name: Install {{ db_package }} package
           yum:
