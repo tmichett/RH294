@@ -25,9 +25,9 @@
       debug:
         msg: The value of web_pkg is "{{ web_pkg }}"
 
-    - name: The variables are
+    - name: The variables are {{ web_service }} for web_service variable
       debug:
-        msg: The value of web_service is "{{ web_service }}"        
+        msg: The value of web_service is "{{ web_service }}" or without quotes as \{\{ web_service \}} for the variable web_service.       
         
 #### End Debug output 
 #
