@@ -1,0 +1,15 @@
+---
+- name: Demo the fail module
+  hosts: databases
+  vars:
+    username: travis
+  tasks:
+    - name: Search for a user in /etc/passwd
+      shell: grep {{ username }}  /etc/passwd
+      register: result
+      ignore_errors: yes      
+
+    - name: Failure module demo
+      fail:
+        msg: "The user {{ username }} is missing from /etc/passwd"
+      when: result.rc == 1
