@@ -1,0 +1,26 @@
+---
+- name: My Playbook name   ### This playbook will do XYZ
+  hosts: host_groupname
+  vars:
+    var1: value
+
+  tasks:
+
+    ### Task 1 is mean to install files using the yum module
+    - name: Install my files
+      yum:
+        name: pkg_name  ## Installs package name XXX
+        state: present
+
+
+    ### Task 2 will work on services
+
+
+
+  handlers:
+    - name: Handler 1
+      service:
+        name: svc_name
+        state: restarted
+
+
