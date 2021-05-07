@@ -1,13 +1,12 @@
 ---
-- name: Demo of Forks=4 Serial=4
+- name: Demo of Forks=4 Serial=Not Set entire inventory (4)
   hosts: webservers
-  serial: 4
   gather_facts: no
 
   tasks:
     - name: Demo Message
       debug:
-        msg: I'm running this with Forks=4 and Serial=4
+        msg: I'm running this with Forks=4 and Serial isn't set so entire inventory
 
 #    - name: Introduce a sleep and pause to the system
 #      pause:

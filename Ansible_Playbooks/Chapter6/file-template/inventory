@@ -6,6 +6,7 @@ serverd
 [web]
 servera
 serverb
+serverf
 
 [database]
 serverc

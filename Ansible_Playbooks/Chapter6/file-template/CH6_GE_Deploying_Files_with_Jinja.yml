@@ -1,6 +1,6 @@
 ---
 - name: configure SOE
-  hosts: all
+  hosts: web 
   remote_user: devops
   become: true
   vars:
