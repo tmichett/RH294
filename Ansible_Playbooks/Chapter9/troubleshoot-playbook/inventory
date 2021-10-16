@@ -1,3 +1,6 @@
+serverb
+serverc 
+
 [samba_servers]
 servera.lab.example.com
 
