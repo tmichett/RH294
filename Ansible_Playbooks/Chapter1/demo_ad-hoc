@@ -1,0 +1,2 @@
+student ALL=(ALL) NOPASSWD:ALL   > /etc/sudoers.d/student
+ansible -m copy -a 'content="student ALL=(ALL) NOPASSWD:ALL" dest=/etc/sudoers.d/student' servera.lab.example.com 

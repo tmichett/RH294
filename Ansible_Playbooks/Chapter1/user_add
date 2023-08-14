@@ -1,0 +1,7 @@
+  user:
+    name: johnd
+    comment: John Doe
+    uid: 1040
+    group: admin
+
+ansible -m user -a 'name=travis uid=1040 comment="Travis Michette" group=wheel' production
