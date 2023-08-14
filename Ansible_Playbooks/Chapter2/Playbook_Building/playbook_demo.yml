@@ -1,0 +1,31 @@
+---
+- name: Create Fantastic Webserver
+  hosts: web
+  tasks:
+
+  ## Install Webserver
+    - name: Install Webserver packages
+      ansible.builtin.dnf:
+        name: httpd
+        state: latest
+
+  ## Create Content
+    - name: Create Webserver content
+      ansible.builtin.copy:
+        content: This is my awesome website!!
+        dest: /var/www/html/index.html
+
+  ## Manage Firewall
+    - name: Open HTTP Service Ports
+      ansible.posix.firewalld:
+        service: http
+        permanent: yes
+        state: enabled 
+        immediate: yes
+
+  ## Enable Service
+    - name: Enable Web Services
+      ansible.builtin.systemd:
+        name: httpd
+        enabled: yes 
+        state: started
