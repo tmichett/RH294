@@ -1,0 +1,20 @@
+---
+- name: Demo Variables
+  hosts: servera
+  vars:
+    - my_var1: Hello I'm Variable 1
+  vars_files:
+    - variables.yml
+
+  tasks:
+    - name: Print Variable 1 from my_var1
+      debug:
+        msg: "I'm variable my_var1 and my contents are: {{ my_var1 }}"
+
+    - name: Print Variable 2 from my_var2
+      debug:
+        msg: "I'm variable my_var2 and my contents are: {{ my_var2 }}"
+
+    - name: Print Variable 3 from my_var3
+      debug:
+        msg: "I'm variable my_var3 and my contents are: {{ my_var3 }}"        
