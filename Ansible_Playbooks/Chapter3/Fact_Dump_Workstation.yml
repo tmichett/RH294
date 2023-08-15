@@ -9,5 +9,5 @@
     - name: Output to File
       copy:
         content: "The FQDN is {{ ansible_facts.fqdn }}\n"
-        dest: /tmp/'{{ inventory_hostname }}.FQDN.txt'
+        dest: /tmp/{{ inventory_hostname }}.FQDN.txt
       delegate_to: workstation

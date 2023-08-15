@@ -1,0 +1,14 @@
+---
+- name: Demo Variables
+  hosts: servera
+  vars_files:
+    - my_secret_vars.yml
+
+  tasks:
+    - name: Print Variable Username
+      debug:
+        msg: "I'm variable username and my contents are: {{ username }}"
+
+    - name: Print Variable Password
+      debug:
+        msg: "I'm variable password and my contents are: {{ password }}"

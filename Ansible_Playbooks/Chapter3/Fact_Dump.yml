@@ -1,6 +1,6 @@
 ---
 - name: Dump facts
-  hosts: servera
+  hosts: serverb
   become: false
   tasks:
     - name: Print Facts
@@ -9,5 +9,5 @@
     - name: Output to File
       copy:
         content: "The FQDN is {{ ansible_facts.fqdn }}\n"
-        dest: '{{ inventory_hostname }}.FQDN.txt'
+        dest: '/tmp/{{ inventory_hostname }}.FQDN.txt'
       delegate_to: localhost
