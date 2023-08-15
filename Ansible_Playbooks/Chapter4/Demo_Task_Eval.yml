@@ -1,0 +1,10 @@
+---
+- name: Test Variable is Defined Demo
+  hosts: serverb
+  vars:
+    my_service: httpd
+  tasks:
+    - name: "{{ my_service }} package is installed"
+      ansible.builtin.dnf:
+        name: "{{ my_service }}"
+      when: my_service is defined

@@ -1,0 +1,11 @@
+---
+- name: Demo of looping over a dictionary
+  hosts: localhost
+  vars_files:
+    - user_vars.yml
+
+  tasks:
+    - name: Iterate over a List of Dictionaries
+      debug:
+        msg: My name is {{ item['name'] }} and my date of birth is {{ item['dob'] }}.
+      loop: "{{ user }}"

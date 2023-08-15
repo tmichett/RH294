@@ -1,0 +1,10 @@
+---
+user:
+  - name: penny
+    dob: 02/14/85
+
+  - name: sheldon
+    dob: 10/31/82
+
+  - name: howard
+    dob: 07/31/84

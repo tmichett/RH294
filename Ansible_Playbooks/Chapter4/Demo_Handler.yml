@@ -1,0 +1,15 @@
+---
+- name: Demo Handlers
+  hosts: servera
+  tasks:
+    - name: Create file on servera
+      ansible.builtin.copy:
+        content: I'm a file created to see if a handler is triggered. I got modified
+        dest: /etc/handler.txt
+      notify: I was triggered
+
+
+  handlers:
+    - name: I was triggered
+      debug:
+        msg: The handler was triggered
