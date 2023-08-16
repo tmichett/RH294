@@ -1,0 +1,23 @@
+---
+- name: Play to demo inventory patter for data* Systems
+  hosts: web*
+  tasks:
+    - name: Pattern Matching for Web* Systems
+      ansible.builtin.debug:
+        msg: Hello, I'm {{ inventory_hostname }} and I match the patter web* and my FQDN is {{ ansible_facts['fqdn'] }}.
+
+
+- name: Play to demo inventory pattern for data* Systems
+  hosts: data*
+  tasks:
+    - name: Pattern Matching for data* Systems
+      ansible.builtin.debug:
+        msg: Hello, I'm {{ inventory_hostname }} and I match the pattern data* and my FQDN is {{ ansible_facts['fqdn'] }}
+
+
+- name: Play to demo inventory pattern for *2 Systems
+  hosts: '*2'
+  tasks:
+    - name: Pattern Matching for *2 Systems
+      ansible.builtin.debug:
+        msg: Hello, I'm {{ inventory_hostname }} and I match the pattern *2 and my FQDN is {{ ansible_facts['fqdn'] }}
