@@ -1,0 +1,8 @@
+---
+- name: Copy File to Remote system
+  hosts: servera
+  tasks:
+    - name: Copy a file to managed hosts and replace with hostname
+      ansible.builtin.template:
+        src: file_to_copy_template.j2
+        dest: /tmp/copied_file_template.txt
