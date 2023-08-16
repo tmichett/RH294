@@ -1,0 +1,9 @@
+---
+- name: Deploy Webserver Content
+  hosts: "{{ variable_host | default('servera') }}"
+  tasks:
+    - name: Install webserver content to managed systems
+      ansible.builtin.copy:
+        content: I'm the HTML page deployed here on {{ ansible_facts['hostname'] }}.
+        dest: /var/www/html/index.html
+

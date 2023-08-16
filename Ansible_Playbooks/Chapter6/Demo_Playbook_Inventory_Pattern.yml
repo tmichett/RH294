@@ -1,5 +1,5 @@
 ---
-- name: Play to demo inventory patter for data* Systems
+- name: Play to demo inventory patter for web* Systems
   hosts: web*
   tasks:
     - name: Pattern Matching for Web* Systems

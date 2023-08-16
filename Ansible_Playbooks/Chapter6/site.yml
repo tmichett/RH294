@@ -1,0 +1,6 @@
+---
+- name: Install and Configure Webserver
+  import_playbook: Deploy_Webserver.yml
+
+- name: Deploy Custom Web Content
+  import_playbook: Deploy_Web_Content.yml 

@@ -1,0 +1,22 @@
+---
+- name: Deploy Webserver
+  hosts: "{{ variable_host | default('servera') }}"
+  tasks:
+    - name: Install webserver to managed systems
+      ansible.builtin.dnf:
+        name: httpd
+        state: latest
+    - name: Start Services
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+    - name: Open Port for FirewallD Service
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: yes
