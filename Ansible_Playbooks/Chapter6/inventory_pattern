@@ -1,4 +1,0 @@
-database1 ansible_host=servera
-database2 ansible_host=serverb
-webserver1 ansible_host=serverc
-webserver2 ansible_host=serverd
