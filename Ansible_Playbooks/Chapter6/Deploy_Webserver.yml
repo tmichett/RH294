@@ -4,7 +4,9 @@
   tasks:
     - name: Install webserver to managed systems
       ansible.builtin.dnf:
-        name: httpd
+        name: 
+          - httpd
+          - firewalld
         state: latest
     - name: Start Services
       ansible.builtin.systemd:

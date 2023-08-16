@@ -1,0 +1,13 @@
+servera
+serverb
+serverc
+serverd
+servera.lab.example.com
+
+[web]
+servera
+serverb
+
+[database]
+serverc
+serverd

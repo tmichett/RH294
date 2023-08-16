@@ -1,0 +1,17 @@
+workstation.lab.example.com
+
+[london]
+servera.lab.example.com
+
+[berlin]
+serverb.lab.example.com
+
+[tokyo]
+serverc.lab.example.com
+
+[atlanta]
+serverd.lab.example.com
+
+[europe:children]
+london
+berlin
