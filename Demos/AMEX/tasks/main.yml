@@ -1,4 +1,5 @@
 ---
+# tasks file for AMEX
 - name: Install Services and Packages to managed systems
   ansible.builtin.dnf:
     name: "{{ packages }}"
@@ -9,3 +10,9 @@
     state: started
     enabled: true
   loop: "{{ services }}"
+- name: Open Service for FirewallD Service
+  ansible.posix.firewalld:
+    service: "{{ firewall_svc }}"
+    state: enabled
+    permanent: true
+    immediate: yes

@@ -1,0 +1,13 @@
+---
+- name: Demo AMEX Demo
+  hosts: servera
+  vars:
+    services:
+      - httpd 
+      - firewalld
+    packages: 
+      - httpd
+      - firewalld
+    firewall_svc: http
+  roles: 
+    - AMEX
