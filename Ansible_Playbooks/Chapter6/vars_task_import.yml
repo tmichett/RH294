@@ -1,0 +1,8 @@
+---
+packages:
+  - httpd
+  - firewalld
+services: 
+  - httpd
+  - firewalld
+firewall_svc: http

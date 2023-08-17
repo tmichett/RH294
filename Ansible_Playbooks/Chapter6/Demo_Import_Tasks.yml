@@ -1,0 +1,14 @@
+---
+- name: Playbook to Deploy a Web Service and Content by Importing Existing tasks
+  hosts: serverc
+  vars_files:
+    - vars_task_import.yml
+  tasks:
+    - name: Import task to install WebServer Services
+      ansible.builtin.import_tasks: tasks/install_service.yml
+    - name: Import task to setup Firewall
+      ansible.builtin.import_tasks: tasks/open_firewall.yml
+    - name: Create web content
+      ansible.builtin.copy:
+        content: Hello from webserver {{ ansible_facts['fqdn'] }}.
+        dest: /var/www/html/index.html

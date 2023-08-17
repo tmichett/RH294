@@ -1,0 +1,11 @@
+---
+- name: Install webserver to managed systems
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: latest
+- name: Start Services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: "{{ services }}"

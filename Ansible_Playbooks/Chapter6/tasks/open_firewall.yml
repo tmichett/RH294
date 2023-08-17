@@ -1,0 +1,7 @@
+---
+- name: Open Port for FirewallD Service
+  ansible.posix.firewalld:
+    service: "{{ firewall_svc }}"
+    state: enabled
+    permanent: true
+    immediate: yes
