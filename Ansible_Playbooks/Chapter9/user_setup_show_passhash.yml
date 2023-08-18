@@ -1,0 +1,10 @@
+---
+- name: Example to setup a user and a password
+  hosts: all
+  vars:
+    username: travis
+    password: redhat
+  tasks:
+    - name: Display Password Hash
+      ansible.builtin.debug:
+        msg: The hashed password is "{{  password |  password_hash('sha512') }}"
