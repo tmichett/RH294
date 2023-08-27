@@ -1,0 +1,7 @@
+{% for host in groups['all'] %}
+{{ hostvars[inventory_hostname]['ansible_facts']['eth0']['ipv4']['address'] }} {{ hostvars[inventory_hostname]['ansible_facts']['fqdn'] }} {{ hostvars[inventory_hostname]['ansible_facts']['hostname'] }}
+{% endfor %}
+
+
+
+

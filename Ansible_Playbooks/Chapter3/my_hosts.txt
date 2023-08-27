@@ -1,0 +1,8 @@
+172.25.250.11 serverb.lab.example.com serverb
+172.25.250.11 serverb.lab.example.com serverb
+172.25.250.11 serverb.lab.example.com serverb
+172.25.250.11 serverb.lab.example.com serverb
+
+
+
+

@@ -1,0 +1,19 @@
+---
+- name: Dump facts
+  hosts: serverb
+  become: false
+  tasks:
+    - name: Print Facts
+      debug: 
+        var: ansible_facts
+    - name: Print specific fact
+      debug:
+        msg: "Default Networking Information is {{ ansible_facts.default_ipv4.address }}\n"
+
+    - name: Print from specific adapter
+      debug: 
+        msg: The IP Address for ETH0 is {{ ansible_facts.eth0.ipv4.address }}
+
+    - name: Print using hostvars
+      debug:
+        msg: The hostname is {{ hostvars[inventory_hostname]['ansible_hostname'] }}

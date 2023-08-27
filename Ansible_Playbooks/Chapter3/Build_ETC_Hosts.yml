@@ -1,0 +1,25 @@
+---
+- name: Build /etc/hosts
+  hosts: serverb
+  become: false
+  tasks:
+    - name: Print Facts
+      debug: 
+        var: ansible_facts
+    - name: Print specific fact
+      debug:
+        msg: "Default Networking Information is {{ ansible_facts.default_ipv4.address }}\n"
+
+    - name: Print from specific adapter
+      debug: 
+        msg: The IP Address for ETH0 is {{ ansible_facts.eth0.ipv4.address }} the FQDN is  {{ ansible_facts.fqdn }} and the hostname is  {{ ansible_facts.hostname }}
+
+    - name: Print using hostvars
+      debug:
+        msg: The hostvars for IP address is {{ hostvars[inventory_hostname]['ansible_facts']['eth0']['ipv4']['address'] }} and the FQDN is {{ hostvars[inventory_hostname]['ansible_facts']['fqdn'] }} and the hostname is {{ hostvars[inventory_hostname]['ansible_facts']['hostname'] }}
+
+    - name: deploy template
+      template:
+        src: etc_hosts.j2
+        dest: ./my_hosts.txt
+      delegate_to: localhost
