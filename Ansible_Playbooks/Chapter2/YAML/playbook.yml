@@ -1,0 +1,39 @@
+---
+# First Play
+- name: First Play of Playbook - Show items in list
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - shopping_list.yaml
+  tasks:
+    - name: Dump list 
+      debug:
+        var: shopping_list
+    - name: Iterate through list items 
+      debug:
+        msg: The shopping list contains - {{ item }}
+      loop: "{{ shopping_list }}"
+
+# Second Play
+- name: Second Play of Playbook - Show items in Dictionary 
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - sandwich_dict.yaml
+  tasks:
+    - name: Dump list 
+      debug:
+        var: sandwich
+
+    - name: Iterate through Dictionary
+      debug:
+        msg: The sandwich has the following componets from the YAML dictionary - {{ item }}
+      with_dict: "{{ sandwich }}"   
+
+    - name: Just get Sandwich Bread Type
+      debug:
+        msg: The sandwich should be made with {{ sandwich['bread'] }} bread.
+
+    - name: Get Sandwich Meat and Cheeses
+      debug:
+        msg: The sandwich should be made with {{ sandwich['meat'] }} as the main meat and {{ sandwich['cheese'] }} cheese.

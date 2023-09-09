@@ -1,0 +1,16 @@
+pkg_list:
+  - httpd
+  - firewalld
+  - mod_ssl
+  - tree
+  - vim
+
+pkg_dict_list:
+  - web1:
+      web_pkg: nginx 
+      firewall_pkg: firewalld
+      editor: vim
+  - web2:
+      web_pkg: httpd 
+      firewall_pkg: firewalld
+      editor: nano

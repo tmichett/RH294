@@ -1,0 +1,15 @@
+---
+# First Play
+- name: First Play of Playbook - Show items in list and dictionary
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - packages_to_install.yaml
+  tasks:
+    - name: Dump list 
+      debug:
+        var: pkg_list
+    - name: Dump Dictionary List 
+      debug:
+        var: pkg_dict_list
+
