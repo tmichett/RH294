@@ -12,15 +12,14 @@
     - name: Dump Dictionary List 
       debug:
         var: pkg_dict_list
+
     - name: Dump Dictionary List of just web packages
       debug:
-        msg: The web packages are {{ pkg_dict_list | selectattr('web_pkg', 'defined') | map(attribute='web_pkg') }}
-    - name: Dump Dictionary List of just Package Groups
-      debug:
-        msg: The web package group names are {{pkg_dict_list | selectattr('pkg_group', 'defined') | map(attribute='pkg_group') }}
-      when: "'web1' in  pkg_dict_list  | map(attribute='pkg_group')"
+        msg: The web package is {{ item.value.web_pkg }} for {{ item.key }}
+      loop: "{{ pkg_dict_list | dict2items }}"
 
-    - name: Dump Dictionary List of Package Groups List
+    - name: Dump Dictionary web Pacakage for Web1
       debug:
-        msg: The web package groups are {{ item }}
-      loop: "{{ pkg_dict_list  | map(attribute='pkg_group') }}"
+        msg: The web package is {{ item.value.web_pkg }} for {{ item.key }}
+      loop: "{{ pkg_dict_list | dict2items }}"
+      when: "'web1' in item.key"
