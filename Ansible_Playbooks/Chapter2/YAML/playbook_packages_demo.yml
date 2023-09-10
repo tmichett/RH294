@@ -23,3 +23,15 @@
         msg: The web package is {{ item.value.web_pkg }} for {{ item.key }}
       loop: "{{ pkg_dict_list | dict2items }}"
       when: "'web1' in item.key"
+
+
+## Reference Materials for components used in this playbook 
+##
+## Conditionals (when): https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html
+##
+## Conditional Filters: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/items2dict_filter.html
+##                      https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dict2items_filter.html#ansible-collections-ansible-builtin-dict2items-filter
+##
+## Lookup Filters: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dict_lookup.html
+##
+##
