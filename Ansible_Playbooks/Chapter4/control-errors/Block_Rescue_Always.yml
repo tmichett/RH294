@@ -11,14 +11,18 @@
             msg: Deploying new code build ... multiple steps. (Block Task)
         - name: Trigger Failure (Block Task)
           ansible.builtin.fail:
-            msg: The system may not be provisioned according to the CMDB status. (Block Task)
+            msg: I'm failing because the code in the build sucks and was unsuccessful. (Block Task)
           when: build != "success"
       rescue:
+        - name: Introduce a sleep and pause to the system for 40 seconds - Block Section Failed - Calling Rescue
+          shell: sleep 40
         - name: Reverting to previous build (Rescue Task)
           debug:
             msg: Contacting Git or whatever and performing steps to revert to previous build. (Rescue Task)
 
       always:
+        - name: Introduce a sleep and pause to the system for 40 seconds - Starting the Always Section
+          shell: sleep 40
         - name: Restating services based on build (Always Task)
           debug:
             msg: Performing steps to restart needed services based on build. (Always Task)
