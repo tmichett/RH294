@@ -1,0 +1,24 @@
+---
+- name: Demo Block Rescue Always
+  hosts: all
+  vars:
+    build: failed
+  tasks:
+    - name: Attempt to deploy new code build
+      block:
+        - name: Install New Code Build
+          debug:
+            msg: Deploying new code build ... multiple steps 
+        - name: Trigger Failure
+          ansible.builtin.fail:
+            msg: The system may not be provisioned according to the CMDB status.
+            when: build != success
+      rescue:
+        - name: Reverting to previous build
+          debug:
+            msg: Contacting Git or whatever and performing steps to revert to previous build
+
+      always:
+        - name: Restating services based on build
+          debug:
+            msg: Performing steps to restart needed services based on build
