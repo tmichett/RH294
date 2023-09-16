@@ -12,7 +12,7 @@
         - name: Trigger Failure
           ansible.builtin.fail:
             msg: The system may not be provisioned according to the CMDB status.
-            when: build != success
+          when: build != success
       rescue:
         - name: Reverting to previous build
           debug:
