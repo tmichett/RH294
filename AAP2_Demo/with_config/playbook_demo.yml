@@ -16,9 +16,9 @@
     - name: Show user for the task with Become=True
       ansible.builtin.shell: |
         whoami
-      become: fasle
+      become: false
       register: username
 
     - name: Display User with play Become=false
       ansible.builtin.debug:
-        msg: My user for Become=True is {{ username.stdout }}
+        msg: My user for Become=false is {{ username.stdout }}
