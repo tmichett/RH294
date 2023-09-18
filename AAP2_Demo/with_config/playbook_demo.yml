@@ -1,0 +1,26 @@
+---
+- name: Create Sudoers File
+  hosts: servera.lab.example.com
+
+  tasks:
+
+    - name: Print User Running Playbook
+    - name: Show user for the task with Become=True
+      ansible.builtin.shell: |
+        whoami
+      become: true
+      register: username
+
+    - name: Display User with play Become=True
+      ansible.builtin.debug:
+        msg: My user for Become=True is {{ username.stdout }}
+
+    - name: Show user for the task with Become=True
+      ansible.builtin.shell: |
+        whoami
+      become: fasle
+      register: username
+
+    - name: Display User with play Become=false
+      ansible.builtin.debug:
+        msg: My user for Become=True is {{ username.stdout }}
