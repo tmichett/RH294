@@ -1,0 +1,1 @@
+podman run --rm -it  utility.lab.example.com/ee-supported-rhel8:latest whoami

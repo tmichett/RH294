@@ -3,9 +3,22 @@
   hosts: servera.lab.example.com
 
   tasks:
+    - name: Show user for the task with Become=True
+      ansible.builtin.shell: |
+        whoami
+      become: true
+      register: username
 
-    - name: Create Sudoers File
-      ansible.builtin.copy:
-        content: student ALL=(ALL) NOPASSWD:ALL
-        dest: /etc/sudoers.d/student
-        validate: /usr/sbin/visudo -csf %s
+    - name: Display User with play Become=True
+      ansible.builtin.debug:
+        msg: My user for Become=True is {{ username.stdout }}
+
+    - name: Show user for the task with Become=True
+      ansible.builtin.shell: |
+        whoami
+      become: false
+      register: username
+
+    - name: Display User with play Become=false
+      ansible.builtin.debug:
+        msg: My user for Become=false is {{ username.stdout }}
