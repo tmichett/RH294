@@ -3,8 +3,6 @@
   hosts: servera.lab.example.com
 
   tasks:
-
-    - name: Print User Running Playbook
     - name: Show user for the task with Become=True
       ansible.builtin.shell: |
         whoami
