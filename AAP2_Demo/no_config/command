@@ -1,0 +1,13 @@
+Try as student (Student user configured Sudo requires PASSWD)
+ansible-playbook playbook_demo.yml -i inventory -K
+
+
+Try as the DevOps User (DevOps user configured Sudo NoPASSWD)
+
+su devops
+ansible-playbook playbook_demo.yml -i inventory
+
+
+With Ansible Navigator (Default System Configuration)
+
+ansible-navigator run playbook_demo.yml -m stdout -i inventory
