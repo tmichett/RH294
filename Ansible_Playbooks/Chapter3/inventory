@@ -14,5 +14,8 @@ my_var3=Hello I'm variable 3 and I'm an inventory variable
 serverc
 serverd
 
+[database:vars]
+my_var3=Hello I'm variable 3 and I'm an inventory variable for database servers group per Ramesh
+
 [net]
 serverb

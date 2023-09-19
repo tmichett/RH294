@@ -1,6 +1,6 @@
 ---
 - name: Demo Variables
-  hosts: servera
+  hosts: all
   vars:
     - my_var1: Hello I'm Variable 1
   vars_files:

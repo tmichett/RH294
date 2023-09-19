@@ -1,0 +1,4 @@
+---
+- name: My First Playbook and My little Pony
+  hosts: all
+  gather_facts: false

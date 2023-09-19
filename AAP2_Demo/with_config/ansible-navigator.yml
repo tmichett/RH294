@@ -7,6 +7,6 @@ ansible-navigator:
     image: utility.lab.example.com/ee-supported-rhel8:latest
     pull:
       policy: missing
-  mode: stdout
+  mode: interactive
   playbook-artifact:
     enable: false
