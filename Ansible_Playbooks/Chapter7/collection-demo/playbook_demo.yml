@@ -1,0 +1,29 @@
+---
+- name: Install Webserver and Make Content Available
+  hosts: serverd
+  vars:
+    pkg_name:
+      - httpd
+      - tree
+    svc:
+      - svc_name: httpd
+        svc_state: started
+        svc_enabled: yes
+    fw:
+      - fw_port: 8080
+        fw_proto: tcp
+      - fw_port: 9090
+        fw_proto: tcp
+    fw_svc:
+      - fw_svc_name: http
+      - fw_svc_name: https
+  roles:
+    - tmichett.gls_collection_demo.deploy_packages
+    - tmichett.gls_collection_demo.manage_services
+    - tmichett.gls_collection_demo.manage_firewall
+
+  tasks:
+    - name: Create Web Content
+      ansible.builtin.copy:
+        content: "This is a sample website from the collection"
+        dest: /var/www/html/index.html
