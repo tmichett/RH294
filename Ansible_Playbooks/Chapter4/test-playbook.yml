@@ -1,0 +1,27 @@
+---
+- name: test loop with split
+  hosts: localhost
+  vars:
+    value1: "abc def hij klm nop qrs tuv xyz"
+  tasks:
+    - name: this is testing loop
+      shell: |
+        echo {{ item }}
+      register: valuesplit
+      with_items:
+        - "{{ value1.split() }}"
+    - debug:
+        msg: "STDOUT LINES from the last task is: {{ item['stdout_lines'] }}"
+      loop: "{{ valuesplit['results'] }}"
+
+    - debug:
+        var: item['stdout_lines']
+      loop: "{{ valuesplit['results'] }}"
+
+    - name: Setting as a variable (only captures last line in loop  - overwrites)
+      set_fact:
+        split_lines: "{{ item['stdout_lines'] }}"
+      loop: "{{ valuesplit['results'] }}"
+
+    - debug:
+        var: split_lines
