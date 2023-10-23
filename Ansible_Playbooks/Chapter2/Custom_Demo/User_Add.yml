@@ -1,0 +1,10 @@
+---
+- name: Add a User
+  hosts: all
+  tasks:
+    - name: Add Travis2 User
+      ansible.builtin.user:
+        name: travis2
+        comment: Travis Michette 2
+        uid: 1040
+        group: wheel

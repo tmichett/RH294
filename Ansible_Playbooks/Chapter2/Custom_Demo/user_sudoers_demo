@@ -1,0 +1,3 @@
+travis ALL=(ALL) NOPASSWD:ALL   > /etc/sudoers.d/travis
+
+ansible -m copy -a 'content="travis ALL=(ALL) NOPASSWD:ALL" dest=/etc/sudoers.d/travis' all
