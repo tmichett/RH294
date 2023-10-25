@@ -1,0 +1,16 @@
+---
+ansible-navigator:
+  ansible:
+    config:
+      path: ./ansible.cfg
+  execution-environment:
+    image: ee-supported-rhel8:latest
+    pull:
+      policy: missing
+    
+    volume-mounts:
+      - dest: /tmp
+        options: Z
+        src: ./
+  playbook-artifact:
+    enable: false

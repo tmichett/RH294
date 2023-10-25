@@ -1,0 +1,15 @@
+---
+- name: Demo to Fetch Files from Remote System
+  hosts: servera
+  tasks:
+    - name: Fetch file from system
+      fetch:
+        src: /etc/hostname
+        dest: /tmp/{{ inventory_hostname }}_etc_hostname
+        flat: yes
+
+    - name: Copy Files to Host
+      copy:
+        src: /tmp/{{ inventory_hostname }}_etc_hostname
+        dest: /tmp
+      delegate_to: workstation
