@@ -1,0 +1,8 @@
+---
+- name: Navigator Settings
+  hosts: servera
+
+  tasks:
+    - name: Print Variable 1 from my_var1
+      debug:
+        msg: "The Ansible-User is: {{ ansible_user }}"

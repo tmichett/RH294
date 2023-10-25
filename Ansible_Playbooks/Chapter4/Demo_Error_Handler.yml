@@ -1,16 +1,21 @@
 ---
 - name: Demo playbook for handlers and failed tasks
   hosts: servera
-#  force_handlers: yes
+  force_handlers: yes
   
   tasks:
     - name: a task which always notifies its handler because it evaluates as true
       ansible.builtin.command: /bin/true
       notify: Handler was notified
+      ignore_errors: true
 
     - name: Task that failed
       ansible.builtin.command: /bin/false
       ignore_errors: true
+
+    - name: a task which always notifies its handler because it evaluates as true
+      ansible.builtin.debug: 
+        msg: I'm the 3rd task
 
   handlers:
     - name: Handler was notified

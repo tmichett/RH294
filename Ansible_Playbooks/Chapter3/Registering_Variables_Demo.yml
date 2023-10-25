@@ -10,4 +10,5 @@
       register: install_result
 
     - name: A {{ install_result.results  }} was installed!!!
-      debug: var=install_result.results
+      debug: 
+        var: install_result.results

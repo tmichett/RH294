@@ -4,7 +4,7 @@
   tasks:
     - name: Create file on servera
       ansible.builtin.copy:
-        content: I'm a file created to see if a handler is triggered. I got modified
+        content: I'm a file created to see if a handler is triggered. I got modified again..
         dest: /etc/handler.txt
       notify: I was triggered
 
