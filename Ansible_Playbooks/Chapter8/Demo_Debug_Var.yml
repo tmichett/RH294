@@ -1,0 +1,23 @@
+---
+- name: Demo of Debug and VAR
+  hosts: servera
+  vars:
+    var_1: I'm var1
+    var_2: I'm var2
+  tasks:
+
+    - name: Use Debug with Message to Print Variables
+      ansible.builtin.debug:
+        msg: The value for var_1 is {{ var_1 }} and the value for var_2 is {{ var_2 }}
+
+    - name: I'm using Debug with Message as List to Print Variables
+      ansible.builtin.debug:
+        msg: 
+          - Hi I'm message 1
+          - The value for var_1 is {{ var_1 }} 
+          - The value for var_2 is {{ var_2 }}
+
+
+    - name: Use Debug with VAR to dump Variables
+      ansible.builtin.debug:
+        var: var_1

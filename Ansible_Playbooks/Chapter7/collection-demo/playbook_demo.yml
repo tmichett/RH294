@@ -8,7 +8,7 @@
     svc:
       - svc_name: httpd
         svc_state: started
-        svc_enabled: yes
+        svc_enabled: "yes"
     fw:
       - fw_port: 8080
         fw_proto: tcp
@@ -27,3 +27,4 @@
       ansible.builtin.copy:
         content: "This is a sample website from the collection"
         dest: /var/www/html/index.html
+        mode: u+rwx,g+rx,o+rx

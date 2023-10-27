@@ -1,0 +1,25 @@
+---
+- name: Install Software Packages
+  hosts: serverc
+  vars:
+    pkg_name:
+      - vim
+      - tree
+      - httpd
+    svc:
+      - svc_name: httpd
+        svc_state: started
+        svc_enabled: yes
+    fw:
+      - fw_port: 8080
+        fw_proto: tcp
+      - fw_port: 9090
+        fw_proto: tcp
+    fw_svc:
+      - fw_svc_name: http
+      - fw_svc_name: https    
+  roles:
+    - tmichett.deploy_packages
+    - tmichett.manage_services
+    - tmichett.manage_firewall
+

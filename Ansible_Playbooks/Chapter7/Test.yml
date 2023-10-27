@@ -1,0 +1,9 @@
+---
+  - name: Test
+    hosts: localhost
+
+    tasks:
+
+      - name: Installs packages
+        debug:
+          msg: This task installs packages

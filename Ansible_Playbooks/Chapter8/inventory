@@ -1,5 +1,7 @@
 servera
+serverb
 serverc
+serverd
 
 [webservers]
 server[a:d].lab.example.com
