@@ -6,22 +6,22 @@
   vars_files:
     - shopping_list.yaml
   tasks:
-    - name: Dump list 
+    - name: Dump list
       debug:
         var: shopping_list
-    - name: Iterate through list items 
+    - name: Iterate through list items
       debug:
         msg: The shopping list contains - {{ item }}
       loop: "{{ shopping_list }}"
 
 # Second Play
-- name: Second Play of Playbook - Show items in Dictionary 
+- name: Second Play of Playbook - Show items in Dictionary
   hosts: localhost
   gather_facts: true
   vars_files:
     - sandwich_dict.yaml
   tasks:
-    - name: Dump list 
+    - name: Dump list
       debug:
         var: sandwich
 

@@ -13,7 +13,7 @@
       ansible.builtin.debug:
         msg: My user for Become=True is {{ username.stdout }}
 
-    - name: Show user for the task with Become=True
+    - name: Show user for the task with Become=False
       ansible.builtin.shell: |
         whoami
       become: false
