@@ -20,12 +20,12 @@
       ansible.posix.firewalld:
         service: http
         permanent: yes
-        state: enabled 
+        state: enabled
         immediate: yes
 
   ## Enable Service
     - name: Enable Web Services
       ansible.builtin.systemd:
         name: httpd
-        enabled: yes 
+        enabled: yes
         state: started
