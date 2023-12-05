@@ -7,6 +7,10 @@
     - variables.yml
 
   tasks:
+    - name: Demo of missing "" on Missing braces
+      debug:
+        msg: "{{my_var1}}"
+
     - name: Print Variable 1 from my_var1
       debug:
         msg: "I'm variable my_var1 and my contents are: {{ my_var1 }}"
