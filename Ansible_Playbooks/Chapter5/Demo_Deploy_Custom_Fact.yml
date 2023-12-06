@@ -1,6 +1,7 @@
 ---
 - name: Demo - Create Custom Facts and Fact Directory
   hosts: servera
+  become: true
   tasks:
     - name: Create Custom Fact Directory
       ansible.builtin.file:
