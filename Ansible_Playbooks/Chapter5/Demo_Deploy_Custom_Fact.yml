@@ -2,6 +2,8 @@
 - name: Demo - Create Custom Facts and Fact Directory
   hosts: servera
   become: true
+  vars:
+    jon_var: Oops I have a demo
   tasks:
     - name: Create Custom Fact Directory
       ansible.builtin.file:
@@ -19,4 +21,5 @@
           service = httpd
           state = started
           enabled = true
+          non_eval_var = {{ '{{ jon_var  }}' }}
         dest: /etc/ansible/facts.d/custom.fact
