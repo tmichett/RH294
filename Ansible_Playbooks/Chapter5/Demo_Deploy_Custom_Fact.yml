@@ -1,0 +1,21 @@
+---
+- name: Demo - Create Custom Facts and Fact Directory
+  hosts: servera
+  tasks:
+    - name: Create Custom Fact Directory
+      ansible.builtin.file:
+        path: /etc/ansible/facts.d
+        state: directory
+        recurse: yes
+        owner: root
+        group: root
+
+    - name: Create Custom Fact File
+      ansible.builtin.copy:
+        content: |
+          [general]
+          package = httpd
+          service = httpd
+          state = started
+          enabled = true
+        dest: /etc/ansible/facts.d/custom.fact
