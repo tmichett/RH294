@@ -1,0 +1,9 @@
+---
+- name: Validate inventory hosts
+  hosts: internetweb
+  gather_facts: no
+
+  tasks:
+
+    - name: Show who you are and testing credentials
+      ansible.builtin.shell: whoami
