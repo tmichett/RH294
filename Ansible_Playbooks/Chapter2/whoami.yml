@@ -1,6 +1,6 @@
 ---
 - name: Validate inventory hosts
-  hosts: internetweb
+  hosts: all
   gather_facts: no
 
   tasks:
