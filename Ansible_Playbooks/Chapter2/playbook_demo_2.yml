@@ -1,0 +1,9 @@
+---
+- name: My First Playbook
+  hosts: all
+  gather_facts: true
+  become: false
+  tasks:
+    - name: Test Task 1
+      ansible.builtin.debug:
+        msg: This is a test message
