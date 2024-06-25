@@ -4,15 +4,15 @@
   tasks:
     - name: Create file on servera
       ansible.builtin.copy:
-        content: I'm a file created to see if a handler is triggered.
+        content: I'm a file created to see if a handler is triggered again with changed file content. Another change has been made!!!
         dest: /etc/handler.txt
-      notify: Another handler not triggered
+      notify: I was triggered
 
 
   handlers:
     - name: I was triggered
-      debug:
-        msg: The handler was triggered
+      shell: echo "The handler was triggered"
+      notify: Another handler not triggered
 
     - name: Another handler not triggered
       debug:

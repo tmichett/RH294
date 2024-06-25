@@ -10,4 +10,4 @@
       copy:
         content: "The FQDN is {{ ansible_facts.fqdn }}\n"
         dest: '/tmp/{{ inventory_hostname }}.FQDN.txt'
-      delegate_to: localhost
+      delegate_to: workstation
