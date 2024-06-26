@@ -1,0 +1,3 @@
+#!/bin/bash
+hardware_info=`lshw -json`
+echo "${hardware_info}"
