@@ -1,6 +1,7 @@
 ---
 - name: Demo Variables
-  hosts: servera
+  hosts: localhost
+  become: false
   vars_files:
     - my_secret_vars.yml
 
